@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullstackappfrontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fullstackappfrontend
+  template:
+    metadata:
+      labels:
+        app: fullstackappfrontend
+    spec:
+      containers:
+        - name: fullstackappfrontend-container
+          image: huitingfeng/fullstackappfrontend:1
+          imagePullPolicy: Always
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullstackapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fullstackapp
+  template:
+    metadata:
+      labels:
+        app: fullstackapp
+    spec:
+      containers:
+        - name: fullstackapp-container
+          image: huitingfeng/fullstackapp:1
+          imagePullPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullstackappfrontend-service
+spec:
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+  type: NodePort
+  selector:
+    app: fullstackappfrontend
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullstackapp-service
+spec:
+  ports:
+    - name: http
+      targetPort: 8080
+      port: 80
+  type: ClusterIP
+  selector:
+    app: fullstackapp
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fullstackappfrontend-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: fullstackappfrontend.localhost
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fullstackappfrontend-service
+              servicePort: http
