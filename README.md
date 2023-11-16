@@ -3,18 +3,17 @@
 #### Course name: Software Engineering for the Cloud
 #### Students: FOUR & FENG
 
-
 ## Prerequisite
 ### FrontEnd
-#### git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
-#### npm start
+    - git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
+    - npm start
 
 ### BackEnd
-####  git clone https://github.com/youtube-arjun-codes/FullStackApp.git
-#### Intellij: settings -> build tool -> choose maven -> apply
-#### cd FullStackApp
-#### brew install maven
-#### mvn clean package (build the java application)
+    - git clone https://github.com/youtube-arjun-codes/FullStackApp.git
+    - Intellij: settings -> build tool -> choose maven -> apply
+    - cd FullStackApp
+    - brew install maven
+    - mvn clean package (build the java application)
 
 ### Database-MySQL
 #### create a container MySQL
