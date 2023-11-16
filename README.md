@@ -1,7 +1,8 @@
-# PROJECT_TEST
+# PROJECT_StudentSystem
 
-## Students
-#### FOUR & FENG
+#### Course name: Software Engineering for the Cloud
+#### Students: FOUR & FENG
+
 
 ## Prerequisite
 ### FrontEnd
