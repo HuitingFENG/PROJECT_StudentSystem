@@ -5,9 +5,9 @@
 
 ## Prerequisite
 ### FrontEnd
-#### https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
+#### git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
 #### npm start
 
 ### BackEnd
-####  https://github.com/youtube-arjun-codes/FullStackApp.git
+####  git clone https://github.com/youtube-arjun-codes/FullStackApp.git
 #### build maven
