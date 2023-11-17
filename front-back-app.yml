@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: fullstackapp
-          image: huitingfeng/fullstackapp:1  # replace with your actual image
+          image: huitingfeng/fullstackapp:1
           ports:
-            - containerPort: 8080  # the port your app runs on
+            - containerPort: 8080  # the port app runs on
 
 ---
 apiVersion: v1
@@ -30,7 +30,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: LoadBalancer  # or ClusterIP if you don't want an external IP
+  type: LoadBalancer  # or ClusterIP if don't want an external IP
 
 
 ---
@@ -50,9 +50,9 @@ spec:
     spec:
       containers:
         - name: fullstackappfrontend
-          image: huitingfeng/fullstackappfrontend:1  # replace with your actual image
+          image: huitingfeng/fullstackappfrontend:1
           ports:
-            - containerPort: 3000  # the port your app runs on
+            - containerPort: 3000  # the port app runs on
 
 ---
 apiVersion: v1
@@ -66,4 +66,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer  # or ClusterIP if you don't want an external IP
+  type: LoadBalancer  # or ClusterIP if don't want an external IP
