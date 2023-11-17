@@ -1,29 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fullstackappfrontend-deployment
+  name: fullstackapp
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: fullstackappfrontend
-  template:
-    metadata:
-      labels:
-        app: fullstackappfrontend
-    spec:
-      containers:
-        - name: fullstackappfrontend-container
-          image: huitingfeng/fullstackappfrontend:1
-          imagePullPolicy: Always
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: fullstackapp-deployment
-spec:
-  replicas: 1
+  replicas: 2  # number of instances
   selector:
     matchLabels:
       app: fullstackapp
@@ -33,51 +13,57 @@ spec:
         app: fullstackapp
     spec:
       containers:
-        - name: fullstackapp-container
-          image: huitingfeng/fullstackapp:1
-          imagePullPolicy: Always
----
+        - name: fullstackapp
+          image: huitingfeng/fullstackapp:1  # replace with your actual image
+          ports:
+            - containerPort: 8080  # the port your app runs on
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: fullstackappfrontend-service
-spec:
-  ports:
-    - name: http
-      targetPort: 8080
-      port: 80
-  type: NodePort
-  selector:
-    app: fullstackappfrontend
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: fullstackapp-service
 spec:
-  ports:
-    - name: http
-      targetPort: 8080
-      port: 80
-  type: ClusterIP
   selector:
     app: fullstackapp
----
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer  # or ClusterIP if you don't want an external IP
 
-apiVersion: extensions/v1beta1
-kind: Ingress
+
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: fullstackappfrontend-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
+  name: fullstackappfrontend
 spec:
-  rules:
-    - host: fullstackappfrontend.localhost
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: fullstackappfrontend-service
-              servicePort: http
+  replicas: 2  # number of instances
+  selector:
+    matchLabels:
+      app: fullstackappfrontend
+  template:
+    metadata:
+      labels:
+        app: fullstackappfrontend
+    spec:
+      containers:
+        - name: fullstackappfrontend
+          image: huitingfeng/fullstackappfrontend:1  # replace with your actual image
+          ports:
+            - containerPort: 3000  # the port your app runs on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullstackappfrontend-service
+spec:
+  selector:
+    app: fullstackappfrontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer  # or ClusterIP if you don't want an external IP
