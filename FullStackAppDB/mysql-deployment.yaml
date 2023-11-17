@@ -21,13 +21,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
-                  key: password
+                  key: root-password
             - name: MYSQL_DATABASE
-              value: "fullstack"
-            - name: MYSQL_USER
-              value: "test"
-            - name: MYSQL_PASSWORD
-              value: "test"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: database
+            - name: MYSQL_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user-password
+            - name: MYSQL_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user-password
           ports:
             - containerPort: 3306
               name: mysql
