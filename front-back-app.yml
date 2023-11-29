@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fullstackapp
+  name: fullstackapp-deployment
 spec:
-  replicas: 2  # number of instances
+  replicas: 1  # number of instances
   selector:
     matchLabels:
       app: fullstackapp
@@ -13,10 +13,24 @@ spec:
         app: fullstackapp
     spec:
       containers:
-        - name: fullstackapp
-          image: huitingfeng/fullstackapp:1
+        - name: fullstackapp-container
+          image: huitingfeng/fullstackapp:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080  # the port app runs on
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/fullstack
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user-name
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: user-password
 
 
 ---
@@ -38,9 +52,9 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fullstackappfrontend
+  name: fullstackappfrontend-deployment
 spec:
-  replicas: 2  # number of instances
+  replicas: 1  # number of instances
   selector:
     matchLabels:
       app: fullstackappfrontend
@@ -50,8 +64,9 @@ spec:
         app: fullstackappfrontend
     spec:
       containers:
-        - name: fullstackappfrontend
-          image: huitingfeng/fullstackappfrontend:1
+        - name: fullstackappfrontend-container
+          image: huitingfeng/fullstackappfrontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000  # the port app runs on
 
