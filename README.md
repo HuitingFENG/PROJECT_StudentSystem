@@ -1,7 +1,7 @@
 # PROJECT_StudentSystem
 
 #### Course name: Software Engineering for the Cloud
-#### Students: FOUR & FENG
+#### Students M2 SE1: FOUR & FENG
 
 ## Prerequisite
 ### FrontEnd
@@ -28,4 +28,3 @@
     - apply some yaml files of mysql
 
 
-#testTEST
