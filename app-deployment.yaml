@@ -77,7 +77,7 @@ spec:
     - host: studentsystem
       http:
         paths:
-          - path: / # /backend(/|$)(.*)
+          - path: /student/ # /backend(/|$)(.*)
             pathType: Prefix
             backend:
               service:
