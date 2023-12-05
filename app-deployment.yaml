@@ -15,6 +15,7 @@ spec:
       containers:
         - name: appbackend-container
           image: huitingfeng/appbackend:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
@@ -59,4 +60,5 @@ spec:
     - protocol: "TCP"
       port: 8080 # The port that the service is running on in the cluster
       targetPort: 8080 # The port exposed by the service
-  type: NodePort # type of the service.
+      #nodePort: 32404
+  type: LoadBalancer # type of the service.
