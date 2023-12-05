@@ -25,7 +25,7 @@ export default function Student() {
     e.preventDefault()
     const student={name,address}
     console.log(student)
-    fetch("${API_BASE_URL}/student/add",{
+    fetch("${API_BASE_URL}/add",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(student)
@@ -36,7 +36,7 @@ export default function Student() {
 }
 
 useEffect(()=>{
-  fetch("${API_BASE_URL}/student/getAll")
+  fetch("${API_BASE_URL}/getAll")
   .then(res=>res.json())
   .then((result)=>{
     setStudents(result);

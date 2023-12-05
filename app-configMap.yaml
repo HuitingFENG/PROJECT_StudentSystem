@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  REACT_APP_API_BASE_URL: "http://studentsystem"
+  REACT_APP_API_BASE_URL: "http://studentsystem:8080/student/"
