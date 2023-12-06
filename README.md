@@ -28,3 +28,13 @@
     - apply some yaml files of mysql
 
 
+
+
+
+          - path: /student/ # /backend(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: appbackend-service
+                port:
+                  number: 8080

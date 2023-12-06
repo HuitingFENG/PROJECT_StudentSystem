@@ -18,79 +18,35 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          env:   # Setting Enviornmental Variables
-            - name: DB_HOST   # Setting Database host address from configMap
+          env:
+            - name: DB_HOST
               value: mysql
               #valueFrom :
                 #configMapKeyRef :
                   #name : db-config
                   #key :  host
 
-            - name: DB_NAME  # Setting Database name from configMap
+            - name: DB_NAME
               value: fullstack
               #valueFrom :
                 #configMapKeyRef :
                   #name : db-config
                   #key :  dbName
 
-            - name: DB_USERNAME  # Setting Database username from Secret
+            - name: DB_USERNAME
               value: root
               #valueFrom :
                 #secretKeyRef :
                   #name : mysql-secrets
                   #key :  username
 
-            - name: DB_PASSWORD # Setting Database password from Secret
+            - name: DB_PASSWORD
               value: Huiting123..
               #valueFrom :
                 #secretKeyRef :
                   #name : mysql-secrets
                   #key :  password
 
----
-
-apiVersion: v1 # Kubernetes API version
-kind: Service # Kubernetes resource kind we are creating
-metadata: # Metadata of the resource kind we are creating
-  name: appbackend-service
-spec:
-  selector:
-    app: appbackend
-  ports:
-    - protocol: "TCP"
-      port: 8080 # The port that the service is running on in the cluster
-      targetPort: 8080 # The port exposed by the service
-      #nodePort: 32404
-  type: LoadBalancer # type of the service.
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: studentsystem-ingress
-  #annotations:
-    #nginx.ingress.kubernetes.io/rewrite-target: /$1
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: studentsystem
-      http:
-        paths:
-          - path: / # Or any other path you wish to use for the frontend
-            pathType: Prefix
-            backend:
-              service:
-                name: appfrontend-service
-                port:
-                  number: 80
-          - path: /student/ # /backend(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: appbackend-service
-                port:
-                  number: 8080
 
 
 ---
@@ -103,7 +59,7 @@ spec:
   selector:
     matchLabels:
       app: appfrontend
-  replicas: 1 # You can adjust the number of replicas
+  replicas: 1
   template:
     metadata:
       labels:
@@ -111,13 +67,33 @@ spec:
     spec:
       containers:
         - name: appfrontend-container
-          image: huitingfeng/appfrontend:1.0
+          image: huitingfeng/appfrontend:7.0
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: app-config
           ports:
             - containerPort: 80
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: appbackend-service
+spec:
+  selector:
+    app: appbackend
+  ports:
+    - protocol: TCP
+      port: 8080
+      #targetPort: 8080
+      nodePort: 32404
+  #type: LoadBalancer # type of the service.
+  #type: ClusterIP
+  type: NodePort
+
 
 ---
 
@@ -131,4 +107,38 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-  type: LoadBalancer # Or ClusterIP if you are using Ingress
+      targetPort: 80
+  #type: LoadBalancer
+  type: ClusterIP
+
+
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: studentsystem-ingress
+    #annotations:
+  #nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: studentsystem
+      http:
+        paths:
+          - path: /student/
+            pathType: Prefix
+            backend:
+              service:
+                name: appbackend-service
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: appfrontend-service
+                port:
+                  number: 80

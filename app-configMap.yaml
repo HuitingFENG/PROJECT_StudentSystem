@@ -3,4 +3,7 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  REACT_APP_API_BASE_URL: "http://studentsystem:8080/student/"
+  #REACT_APP_API_BASE_URL: "http://appbackend-service"
+  #REACT_APP_API_BASE_URL: "http://appbackend-service.default.svc.cluster.local:8080/"
+  #REACT_APP_API_BASE_URL: "http://studentsystem:32404/student/"
+  REACT_APP_API_BASE_URL: "http://appbackend-service:8080/student/"

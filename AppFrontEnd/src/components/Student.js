@@ -3,13 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Container ,Paper,Button} from '@material-ui/core';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-     
     },
   },
 }));
@@ -25,7 +23,7 @@ export default function Student() {
     e.preventDefault()
     const student={name,address}
     console.log(student)
-    fetch("${API_BASE_URL}/add",{
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/add`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(student)
@@ -36,7 +34,7 @@ export default function Student() {
 }
 
 useEffect(()=>{
-  fetch("${API_BASE_URL}/getAll")
+  fetch(`${process.env.REACT_APP_API_BASE_URL}/getAll`)
   .then(res=>res.json())
   .then((result)=>{
     setStudents(result);
