@@ -28,6 +28,7 @@
     - apply some yaml files of mysql
 
 '''git status'''
+
     git status
     git commit 
 
