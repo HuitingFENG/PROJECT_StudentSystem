@@ -30,6 +30,7 @@
 '''git status'''
 
     git status
+test
 
     git commit 
 
