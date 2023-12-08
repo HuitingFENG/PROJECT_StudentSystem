@@ -27,6 +27,7 @@
     - minikube start
     - apply some yaml files of mysql
 
+'git status'
 
 
 ## Google Labs
