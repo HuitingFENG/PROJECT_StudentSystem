@@ -85,19 +85,14 @@ Check the status if wanted, but it's not finished yet
 
 ### 3.2. Add a local database (mysql)
 Go to the directory AppBackEnd and update three parts (pom.xml, src/main/resources/application.properties, src/test)
-Go to the root of project and create three .yaml files (db-deployment.yaml, mysql-secret.yaml, mysql-configMap.yaml)
+Go to the root of project and create a .yaml files (db-configMap.yaml, db-deployment.yaml)
 
     touch db-deployment.yaml
-    touch mysql-secret.yaml
-    touch mysql-configMap.yaml
-Copy the corresponding contents and update the password in the mysql-secret.yaml (ex: if using "test" as password)
-    
-    echo "test" | base64
-Copy the result (the encoded password) from terminal and replace the old password with the encoded password
-Update the host, database, username in the mysql-configMap.yaml and the mysql-secret.yaml if necessary
+    touch db-configMap.yaml
+Copy the corresponding contents and update the information in the db-configMap.yaml
 Apply these three .yaml files
     
-    kubectl apply -f mysql-secret.yaml -f mysql-configMap.yaml -f db-deployment.yaml 
+    kubectl apply -f db-configMap.yaml -f db-deployment.yaml 
 Check the status if wanted, but it's not finished yet
 
     kubectl get pods,deployments,svc
@@ -137,15 +132,40 @@ Return to the root of project and create a .yaml files with the provided codes
 Add two parts into the app-deployment .yaml file (appfrontend-deployment, appfrontend-service)
 Apply the .yaml to create an appfrontend-deployment and an appfrontend-service
 
-    kubectl apply -f app-deployment.yaml
+    kubectl apply -f app-configMap.yaml -f app-deployment.yaml
 Check the status if wanted, but it's not finished yet
 
     kubectl get pods,deployments,svc
 Check if all pods, deployments, services are running correctly as below
 ![](Images/KubernetesRunningStatus.png)
+Tape "minikube service appbackend-service" and check in the web browser
+![](Images/MinikubeServiceBackend.png)
+![](Images/BrowserBackend.png)
+Tap "minikube service appfrontend-service" and check in the web browser
+![](Images/MinikubeServiceFrontend.png)
+![](Images/BrowserFrontend.png)
 
 
 ### 3.4. Add a local gateway using ingress
+Set up Ingress on Minikube with the NGINX Ingress Controller
+Enable the NGINX Ingress controller
+
+    minikube addons enable ingress
+Verify that the NGINX Ingress controller is running
+Add the part of ingress in the app-deployment.yaml file and apply it
+
+    kubectl apply -f app-deployment.yaml
+Retrieve the IP address of Ingress
+
+    kubectl get ingress
+Edit the /etc/hosts file and add at the bottom values: 127.0.0.1  studentsystem
+![](Images/EtcHostsFile.png)
+Enable a tunnel for Minikube
+    
+    minikube addons enable ingress-dns
+    minikube tunnel
+Check in the Web browser
+![](Images/BrowserIngressFrontend.png)
 
 
 ### 3.5. Deploy in a cloud infrastructure (Git Actions)
@@ -158,3 +178,9 @@ Check if all pods, deployments, services are running correctly as below
 
 ### FENG
 ![](Images/GoogleLabs_HuitingFENG.png)
+
+
+
+#REACT_APP_API_BASE_URL=http://localhost:8080/student
+#REACT_APP_API_BASE_URL=http://appbackend-service:8080/student
+REACT_APP_API_BASE_URL=http://studentsystem:8080/student

@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  #REACT_APP_API_BASE_URL: "http://appbackend-service:8080/student"
+  #REACT_APP_API_BASE_URL: "http://appbackend-service:30001/student"
   REACT_APP_API_BASE_URL: http://appbackend-service:8080/student
 
