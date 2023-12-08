@@ -24,6 +24,7 @@ Open the docker desktop and go to the project and start the minikube via termina
 Check the status if wanted
     
     minikube status
+![](Images/MinikubeStatus.png)
 Open the dashboard if wanted
     
     minikube dashboard
@@ -35,11 +36,14 @@ Git clone a backend repository (java sprint boot)
 Copy this directory into another new directory to make changes and to git push to our own github repository
 
     cp -R ./FullStackApp ./AppBackEnd
+Remove the old backend repository
+
+    rm FullStackApp
 Set up Intellij: settings -> build tool -> choose maven -> apply
 Install maven if necessary
 
     brew install maven
-Build the java application with maven
+Go to the directory AppBackEnd and build the java application with maven
 
     mvn clean package
 Create a new database named fullstack and a new table named student on MySQL Workbench
@@ -100,11 +104,40 @@ Go to the root of project and git clone a frontend repository (React)
 Copy this directory into another new directory to make changes and to git push to our own github repository
 
     cp -R ./$OldGitHubRepoName ./AppFrontEnd
+Remove the old frontend repository
+
+    rm $OldGitHubRepoName
 Go to the new directory AppFrontEnd and add an .env file
     
     cd AppFrontEnd
     touch .env
-Ensure having the correct local gateway (REACT_APP_API_BASE_URL) that routes requests to the appropriate backend system (appbackend-service)
+Ensure having the correct local gateway (REACT_APP_API_BASE_URL) that routes requests to the appropriate backend system (appbackend-service) and we will use "studentsystem" as local gateway in this project
+Update two url to fetch in the file src/components/Student (line 26, 27, 38, 39)
+Create a dockerfile in this directory AppFrontEnd 
+    
+    touch dockerfile
+Copy the corresponding content
+Create a docker image
+    
+    docker build -t appfrontend:12.0 .
+Push the docker image into docker hub (login if necessary)
+
+    docker images
+    docker tag $appfrontend12.0ImageID $dockerID/appfrontend:12.0
+    docker push $dockerID/appfrontend:12.0
+Return to the root of project and create a .yaml files with the provided codes 
+
+    cd ..
+    touch app-configMap.yaml
+Add two parts into the app-deployment .yaml file (appfrontend-deployment, appfrontend-service)
+Apply the .yaml to create an appfrontend-deployment and an appfrontend-service
+
+    kubectl apply -f app-deployment.yaml
+Check the status if wanted, but it's not finished yet
+
+    kubectl get pods,deployments,svc
+Check if all pods, deployments, services are running correctly as below
+![](Images/KubernetesRunningStatus.png)
 
 
 ### 3.4. Add a local gateway using ingress
