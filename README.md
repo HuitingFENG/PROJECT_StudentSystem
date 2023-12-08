@@ -18,6 +18,8 @@
 - Postman
 - Docker Desktop
 - MySQLWorkbench
+- GitHub Actions
+
 
 ## 3. Steps
 Open the docker desktop and go to the project and start the minikube via terminal
@@ -173,6 +175,16 @@ Check in the Web browser
 #### 3.5.2. Build and tests
 #### 3.5.3. Launch a workflow when the code is updated
 
+
+### 3.6. Delete all
+Delete all deployments and services
+    
+    kubectl delete deployment appfrontend-deployment
+    kubectl delete deployment appbackend-deployment
+    kubectl delete deployment mysql
+    kubectl delete service appfrontend-service
+    kubectl delete service appbackend-service
+    kubectl delete service mysql
 
 
 
