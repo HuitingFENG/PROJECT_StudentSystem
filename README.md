@@ -180,7 +180,3 @@ Check in the Web browser
 ![](Images/GoogleLabs_HuitingFENG.png)
 
 
-
-#REACT_APP_API_BASE_URL=http://localhost:8080/student
-#REACT_APP_API_BASE_URL=http://appbackend-service:8080/student
-REACT_APP_API_BASE_URL=http://studentsystem:8080/student
