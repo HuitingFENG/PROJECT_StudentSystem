@@ -9,7 +9,8 @@
 - Java version: 11.0.21
 - minikube version: v1.31.2
 - Docker version 24.0.6
-- mysql version 8.1.0 
+- mysql client version 8.1.0 
+- mysql server version 8.0.28
 - npm version 8.15.0
 - git version 2.33.0
 - Apache Maven 3.9.5
@@ -33,7 +34,7 @@ Git clone a backend repository (java sprint boot)
     git clone https://github.com/youtube-arjun-codes/FullStackApp.git
 Copy this directory into another new directory to make changes and to git push to our own github repository
 
-    cp -R ./FullStackApp ./AppBackend
+    cp -R ./FullStackApp ./AppBackEnd
 Set up Intellij: settings -> build tool -> choose maven -> apply
 Install maven if necessary
 
@@ -43,14 +44,12 @@ Build the java application with maven
     mvn clean package
 Create a new database named fullstack and a new table named student on MySQL Workbench
 Start the MySQL server depending on your operating system
-    
-    brew services start mysql
 Open a new browser and input 
 
     http://localhost:8080/student/getAll
 Check if the application works correctly, otherwise troubleshoot problems to be able to run the application
 
-
+Stop the mysql server to make the port 3306 available
 Go to the directory AppBackEnd and create a dockerfile
 
     cd AppBackend
@@ -95,9 +94,18 @@ Check the status if wanted, but it's not finished yet
     kubectl get pods,deployments,svc
 
 ### 3.3. Add a second service (appfrontend-service)
-Git clone a frontend repository (React)
+Go to the root of project and git clone a frontend repository (React)
     
     git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git
+Copy this directory into another new directory to make changes and to git push to our own github repository
+
+    cp -R ./$OldGitHubRepoName ./AppFrontEnd
+Go to the new directory AppFrontEnd and add an .env file
+    
+    cd AppFrontEnd
+    touch .env
+Ensure having the correct local gateway (REACT_APP_API_BASE_URL) that routes requests to the appropriate backend system (appbackend-service)
+
 
 ### 3.4. Add a local gateway using ingress
 
