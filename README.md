@@ -13,7 +13,7 @@
 - npm version 8.15.0
 - git version 2.33.0
 - Apache Maven 3.9.5
-- Intellij
+- IntelliJ IDEA
 
 
 ## 3. Steps
@@ -95,7 +95,11 @@ Check the status if wanted, but it's not finished yet
     kubectl get pods,deployments,svc
 
 ### 3.3. Add a second service (appfrontend-service)
+
+
 ### 3.4. Add a local gateway using ingress
+
+
 ### 3.5. Deploy in a cloud infrastructure (Git Actions)
 
 
