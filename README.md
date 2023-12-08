@@ -28,7 +28,7 @@ Open the dashboard if wanted
     minikube dashboard
 
 ### 3.1. Start with a single local service (appbackend-service)
-Git clone an application (java sprint boot) 
+Git clone a backend repository (java sprint boot) 
 
     git clone https://github.com/youtube-arjun-codes/FullStackApp.git
 Copy this directory into another new directory to make changes and to git push to our own github repository
@@ -95,36 +95,15 @@ Check the status if wanted, but it's not finished yet
     kubectl get pods,deployments,svc
 
 ### 3.3. Add a second service (appfrontend-service)
-
+Git clone a frontend repository (React)
+    
+    git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git
 
 ### 3.4. Add a local gateway using ingress
 
 
 ### 3.5. Deploy in a cloud infrastructure (Git Actions)
 
-
-### FrontEnd
-    - git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
-    - npm start
-
-### BackEnd
-    - git clone https://github.com/youtube-arjun-codes/FullStackApp.git
-    - Intellij: settings -> build tool -> choose maven -> apply
-    - cd FullStackApp
-    - brew install maven
-    - mvn clean package (build the java application)
-
-### Database-MySQL
-#### create a container MySQL
-    - docker pull mysql
-    - docker run --name fullstackappDB -v /usr/local/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Huiting123.. -p 3300:3306 -d mysql:latest   
-    - docker ps
-    - mysql -h localhost -P 3300 -u root -p
-    - select * from fullstack.student;
-    - exit
-#### deploy the MySQL container into the Kubernetes cluster 
-    - minikube start
-    - apply some yaml files of mysql
 
 
 
