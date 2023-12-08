@@ -4,6 +4,14 @@
 #### Students M2 SE1: FOUR & FENG
 
 ## Prerequisite
+- java openjdk 11.0.21
+- minikube version: v1.31.2
+- Docker version 24.0.6
+- mysql version 8.1.0 
+- npm version 8.15.0
+
+
+## Steps
 ### FrontEnd
     - git clone https://github.com/youtube-arjun-codes/FullStackAppFrontEnd.git 
     - npm start
@@ -26,6 +34,7 @@
 #### deploy the MySQL container into the Kubernetes cluster 
     - minikube start
     - apply some yaml files of mysql
+
 
 
 ## Google Labs
