@@ -174,9 +174,9 @@ Check in the Web browser
 
 
 ## 4. Google Labs
-### FOUR
+### 4.1. FOUR
 
-### FENG
+### 4.2. FENG
 ![](Images/GoogleLabs_HuitingFENG.png)
 
 
