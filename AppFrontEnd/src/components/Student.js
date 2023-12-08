@@ -23,6 +23,7 @@ export default function Student() {
     e.preventDefault()
     const student={name,address}
     console.log(student)
+    console.log(`${process.env.REACT_APP_API_BASE_URL}/add`)
     fetch(`${process.env.REACT_APP_API_BASE_URL}/add`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
@@ -34,6 +35,7 @@ export default function Student() {
 }
 
 useEffect(()=>{
+  console.log(`${process.env.REACT_APP_API_BASE_URL}/getAll`)
   fetch(`${process.env.REACT_APP_API_BASE_URL}/getAll`)
   .then(res=>res.json())
   .then((result)=>{

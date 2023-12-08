@@ -29,12 +29,8 @@
 
 
 
+## Google Labs
+### FOUR
 
-
-          - path: /student/ # /backend(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: appbackend-service
-                port:
-                  number: 8080
+### FENG
+![test](Images/GoogleLabs_HuitingFENG.png)
