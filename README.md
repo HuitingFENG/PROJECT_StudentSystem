@@ -1,7 +1,9 @@
 # PROJECT_StudentSystem
 
-#### Course name: Software Engineering for the Cloud
-#### Students M2 SE1: FOUR & FENG
+## Description
+- Course name: Software Engineering for the Cloud
+- Students M2 SE1: FOUR & FENG
+
 
 ## Prerequisite
 - java openjdk 11.0.21
