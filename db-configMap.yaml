@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  DB_HOST: mysql
+  DB_NAME: fullstack
+  DB_USERNAME: root
+  DB_PASSWORD: Huiting123..

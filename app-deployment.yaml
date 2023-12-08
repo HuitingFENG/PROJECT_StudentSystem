@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: appbackend-container
-          image: huitingfeng/appbackend:1.0
+          image: huitingfeng/appbackend:8.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -24,28 +24,28 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: db-config
-                  key:  host
+                  key:  DB_HOST
 
             - name: DB_NAME
               #value: fullstack
               valueFrom:
                 configMapKeyRef:
                   name: db-config
-                  key:  database
+                  key:  DB_NAME
 
             - name: DB_USERNAME
               #value: root
               valueFrom:
-                secretKeyRef:
-                  name: db-secrets
-                  key:  username
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_USERNAME
 
             - name: DB_PASSWORD
               #value:
               valueFrom:
-                secretKeyRef:
-                  name: db-secrets
-                  key:  password
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_PASSWORD
 
 
 ---

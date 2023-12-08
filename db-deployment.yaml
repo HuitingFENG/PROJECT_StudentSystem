@@ -44,16 +44,16 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               #value:
               valueFrom:
-                secretKeyRef:
-                  name: db-secrets
-                  key:  password
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_USERNAME
 
             - name: MYSQL_DATABASE
               #value:
               valueFrom:
                 configMapKeyRef:
                   name: db-config
-                  key:  database
+                  key:  DB_NAME
 
 
           ports:

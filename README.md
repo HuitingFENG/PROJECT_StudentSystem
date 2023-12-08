@@ -15,7 +15,9 @@
 - git version 2.33.0
 - Apache Maven 3.9.5
 - IntelliJ IDEA
-
+- Postman
+- Docker Desktop
+- MySQLWorkbench
 
 ## 3. Steps
 Open the docker desktop and go to the project and start the minikube via terminal
@@ -52,7 +54,10 @@ Open a new browser and input
 
     http://localhost:8080/student/getAll
 Check if the application works correctly, otherwise troubleshoot problems to be able to run the application
-
+![](Images/BackendDemo1.png)
+![](Images/BackendDemoAdd.png)
+![](Images/BackendDemoGetAll.png)
+![](Images/BackendDemo2.png)
 Stop the mysql server to make the port 3306 available
 Go to the directory AppBackEnd and create a dockerfile
 
