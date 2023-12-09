@@ -64,9 +64,9 @@ jobs:
           minikube service appbackend-service --url
           echo "------------------opening the service------------------"
 
-      #- name: Test Kubernetes appbackend-service URL
-      #  uses: nick-fields/retry@v2
-      #  with:
-      #    timeout_seconds: 10
-      #    max_attempts: 4
-      #    command: curl $(minikube service appbackend-service --url)/student/getAll
+      - name: Test Kubernetes appbackend-service URL
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 10
+          max_attempts: 4
+          command: curl $(minikube service appbackend-service --url)/student/getAll
