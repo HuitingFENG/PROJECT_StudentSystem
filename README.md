@@ -171,7 +171,14 @@ Check in the Web browser
 
 
 ### 3.5. Continuous Integration with GitHub Actions
-#### 3.5.1. The CI workflow
+#### 3.5.1. Create the CI workflow
+Get Personal DockerHub access token as DOCKER_HUB_ACCESS_TOKEN
+Set two secrets of this GitHub repository under settings button: DOCKER_HUB_ACCESS_TOKEN, DOCKER_HUB_USERNAME
+Create a new directory named .github/workflows and a new actions.yaml
+Copy the content and make git commit and git push 
+Wait and verify the result on GitHub actions web page
+![](Images/GitHubActions.png)
+
 #### 3.5.2. Build and tests
 #### 3.5.3. Launch a workflow when the code is updated
 
