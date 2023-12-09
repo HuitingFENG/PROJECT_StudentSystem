@@ -20,9 +20,18 @@ jobs:
         run:
           kubectl apply -f db-configMap.yaml -f db-deployment.yaml
       - name: Wait for container initialization
-        run: sleep 60
+        run: sleep 30
       - name: Check pods, deployments, services status
         run: kubectl get pods,deployments,svc
+      - name: Install jq
+        run: sudo apt-get install jq
+      - name: Echo ConfigMap Values
+        run: |
+          for key in $(kubectl get configmap db-config -o jsonpath='{.data}' | jq -r 'keys[]'); do
+            echo "$key=$(kubectl get configmap db-config -o jsonpath="{.data.$key}")"
+          done
+
+
 
 
   deploy-backend-frontend:
