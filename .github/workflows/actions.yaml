@@ -32,30 +32,20 @@ jobs:
         run: sleep 60
       - name: Check pods, deployments, services status
         run: kubectl get pods,deployments,svc
-
-
-      - name: Get MySQL Pod Name
-        run: |
-          MYSQL_POD=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
-          echo "MYSQL_POD=$MYSQL_POD" >> $GITHUB_ENV
-
-      - name: Show MySQL Pod Details
-        run: kubectl describe pod ${{ env.MYSQL_POD }}
-
-      - name: Check MySQL Pod Logs
-        run: kubectl logs ${{ env.MYSQL_POD }}
-
-      - name: Attempt to Connect to MySQL
-        run: kubectl exec ${{ env.MYSQL_POD }} -- mysql -h mysql -P 3306 -u root -pHuiting123.. -e "SHOW DATABASES;"
-
-
-      - name: Verify MySQL Connection
-        run: |
-          MYSQL_POD=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
-          kubectl exec $MYSQL_POD -- mysqladmin -h mysql -P 3306 -u root -pHuiting123.. status
-          
-          
-
+      #- name: Get MySQL Pod Name
+      #  run: |
+      #    MYSQL_POD=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
+      #    echo "MYSQL_POD=$MYSQL_POD" >> $GITHUB_ENV
+      #- name: Show MySQL Pod Details
+      #  run: kubectl describe pod ${{ env.MYSQL_POD }}
+      #- name: Check MySQL Pod Logs
+      #  run: kubectl logs ${{ env.MYSQL_POD }}
+      #- name: Attempt to Connect to MySQL
+      #  run: kubectl exec ${{ env.MYSQL_POD }} -- mysql -h mysql -P 3306 -u root -pHuiting123.. -e "SHOW DATABASES;"
+      #- name: Verify MySQL Connection
+      #  run: |
+      #    MYSQL_POD=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
+      #    kubectl exec $MYSQL_POD -- mysqladmin -h mysql -P 3306 -u root -pHuiting123.. status
       - name: Get and Test Service URLs
         run: |
           minikube service list
@@ -64,3 +54,9 @@ jobs:
           # Test the backend service using curl
           echo "Testing backend service at $BACKEND_URL"
           curl -sSf $BACKEND_URL -o /dev/null || echo "Curl request to backend service failed"
+      - name: Test Kubernetes service URL
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 10
+          max_attempts: 4
+          command: curl $(minikube service carservice --url)/student/getAll
