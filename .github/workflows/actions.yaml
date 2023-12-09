@@ -81,7 +81,7 @@ jobs:
         with:
           timeout_seconds: 10
           max_attempts: 4
-          command: curl $(minikube service appbackend-service --url)/student/getAll
+          command: curl http://studentsytem/student/getAll
 
 
 
