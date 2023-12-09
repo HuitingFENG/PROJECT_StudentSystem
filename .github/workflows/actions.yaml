@@ -14,6 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Start Kubernetes minikube
         uses: medyagh/setup-minikube@master
+      - name: Start Docker daemon
+        run: eval $(minikube docker-env)
       #- name: Login to Docker Hub
         #run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
       - name: Deploy the image to minikube
@@ -52,6 +54,8 @@ jobs:
           distribution: 'adopt'
       - name: Start Kubernetes minikube
         uses: medyagh/setup-minikube@master
+      - name: Start Docker daemon
+        run: eval $(minikube docker-env)
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
       - name: Build test and build docker image
