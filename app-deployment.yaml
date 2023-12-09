@@ -20,32 +20,32 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_HOST
-              value: mysql
-              #valueFrom:
-                #configMapKeyRef:
-                  #name: db-config
-                  #key:  DB_HOST
+              #value: mysql
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_HOST
 
             - name: DB_NAME
-              value: fullstack
-              #valueFrom:
-                #configMapKeyRef:
-                  #name: db-config
-                  #key:  DB_NAME
+              #value: fullstack
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_NAME
 
             - name: DB_USERNAME
-              value: root
-              #valueFrom:
-                #configMapKeyRef:
-                  #name: db-config
-                  #key:  DB_USERNAME
+              #value: root
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_USERNAME
 
             - name: DB_PASSWORD
-              value: Huiting123..
-              #valueFrom:
-                #configMapKeyRef:
-                  #name: db-config
-                  #key:  DB_PASSWORD
+              #value:
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key:  DB_PASSWORD
 
 
 ---
