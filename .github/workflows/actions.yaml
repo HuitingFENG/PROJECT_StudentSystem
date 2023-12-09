@@ -24,7 +24,7 @@ jobs:
         run: kubectl get pods,deployments,svc
 
       - name: Login to Docker Hub
-        run: echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
+        run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
       - name: Build test and build docker image
         run: |
