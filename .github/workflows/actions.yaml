@@ -33,7 +33,8 @@ jobs:
       - name: Interact with MySQL Pod
         run: |
           MYSQL_POD=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
-          kubectl exec $MYSQL_POD -- mysql -u root -pHuiting123.. -e "SHOW DATABASES;"
+          kubectl exec $MYSQL_POD -- mysql -h mysql -P 3306 -u root -pHuiting123.. -e "SHOW DATABASES;"
+
 
 
 
