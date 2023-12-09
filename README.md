@@ -175,7 +175,7 @@ Check in the Web browser
 #### 3.5.2. Build and tests
 #### 3.5.3. Launch a workflow when the code is updated
 
-### 3.6. Deploy in a cloud infrastructure
+### 3.6. Deploy in a cloud infrastructure (DigitalOcean Kubernetes)
 
 
 ### 3.7. Delete all

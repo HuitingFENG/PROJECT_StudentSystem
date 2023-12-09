@@ -48,10 +48,13 @@ jobs:
           kubectl get pods
           POD_BACKEND_NAME=$(kubectl get pods -l app=appbackend -o jsonpath="{.items[0].metadata.name}")
           kubectl describe pod $POD_BACKEND_NAME
+          kubectl logs $POD_BACKEND_NAME
           POD_FRONTEND_NAME=$(kubectl get pods -l app=appfrontend -o jsonpath="{.items[0].metadata.name}")
           kubectl describe pod $POD_FRONTEND_NAME
+          kubectl logs $POD_FRONTEND_NAME
           POD_MYSQL_NAME=$(kubectl get pods -l app=mysql -o jsonpath="{.items[0].metadata.name}")
           kubectl describe pod $POD_MYSQL_NAME
+          kubectl logs $POD_MYSQL_NAME
           minikube service list
           minikube service appbackend-service --url
           echo "------------------opening the service------------------"
