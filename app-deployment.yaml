@@ -94,10 +94,10 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      #nodePort: 31007
+      nodePort: 31007
   #type: LoadBalancer
-  type: ClusterIP
-  #type: NodePort
+  #type: ClusterIP
+  type: NodePort
 
 
 ---
