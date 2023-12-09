@@ -177,7 +177,7 @@ Check in the Web browser
 
 
 ### 3.6. Delete all
-Delete all deployments and services
+Delete all and stop minikube
     
     kubectl delete deployment appfrontend-deployment
     kubectl delete deployment appbackend-deployment
@@ -185,6 +185,7 @@ Delete all deployments and services
     kubectl delete service appfrontend-service
     kubectl delete service appbackend-service
     kubectl delete service mysql
+    minikube stop
 
 
 
