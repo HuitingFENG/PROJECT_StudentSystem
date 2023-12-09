@@ -168,10 +168,8 @@ Enable a tunnel for Minikube
     minikube addons enable ingress-dns
     minikube tunnel
 Check in the Web browser
-![](Images/BrowserIngressBackend.png)
-![](Images/BrowserIngressFrontendGetAll.png)
+![](Images/BrowserIngressFrontend.png)
 ![](Images/BrowserIngressFrontendAdd.png)
-![](Images/BrowserLocalGatewayFrontend.png)
 ![](Images/BrowserLocalGatewayBackend.png)
 
 
