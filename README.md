@@ -168,9 +168,11 @@ Enable a tunnel for Minikube
     minikube addons enable ingress-dns
     minikube tunnel
 Check in the Web browser
-![](Images/BrowserIngressFrontend.png)
-![](Images/BrowserIngressFrontendAdd.png)
 ![](Images/BrowserLocalGatewayBackend.png)
+![](Images/BrowserIngressFrontend.png)
+Add a new student via the web browser
+![](Images/BrowserIngressFrontendAdd.png)
+
 
 
 ### 3.5. Continuous Integration with GitHub Actions
