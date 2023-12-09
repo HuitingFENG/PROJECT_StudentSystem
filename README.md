@@ -19,7 +19,7 @@
 - Docker Desktop
 - MySQLWorkbench
 - GitHub Actions
-- AWS EKS
+- Amazon EKS (Amazon Elastic Kubernetes Service)
 
 
 ## 3. Steps
@@ -214,9 +214,7 @@ Delete the branch
 
 
 
-### 3.6. Deploy in a cloud infrastructure (AWS EKS)
-Deploy Spring Boot application to AWS EC2 using GitHub Actions
-
+### 3.6. Deploy in a cloud infrastructure (Amazon Elastic Kubernetes Service)
 
 
 
