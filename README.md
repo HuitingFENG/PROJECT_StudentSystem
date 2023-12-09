@@ -19,7 +19,7 @@
 - Docker Desktop
 - MySQLWorkbench
 - GitHub Actions
-- DigitalOcean Kubernetes
+- AWS EKS
 
 
 ## 3. Steps
@@ -214,7 +214,10 @@ Delete the branch
 
 
 
-### 3.6. Deploy in a cloud infrastructure (DigitalOcean Kubernetes)
+### 3.6. Deploy in a cloud infrastructure (AWS EKS)
+Deploy Spring Boot application to AWS EC2 using GitHub Actions
+
+
 
 
 ### 3.7. Delete all
@@ -236,4 +239,15 @@ Delete all and stop minikube
 ### 4.2. FENG
 ![](Images/GoogleLabs_HuitingFENG.png)
 
+
+## 5. References
+    https://www.youtube.com/watch?v=21V0w6pVYLY
+    https://www.youtube.com/watch?v=GVY-zze0V_U
+    https://github.com/charroux/servicemesh
+    https://github.com/charroux/kubernetes-minikube
+    https://github.com/charroux/noops
+    https://github.com/charroux/CodingWithKubernetes
+    https://github.com/Java-Techie-jt/springboot-crud-k8s
+
+    
 
