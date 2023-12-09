@@ -35,8 +35,8 @@ jobs:
 
       - name: Deploy the image to minikube
         run:
-          kubectl apply -f app-configMap.yaml -f app-deployment.yaml -f db-configMap.yaml -f db-deployment.yaml
-          
+          kubectl apply -f db-configMap.yaml -f db-deployment.yaml -f app-configMap.yaml -f app-deployment.yaml
+
       - name: Wait for container initialization
         run: sleep 120
 
