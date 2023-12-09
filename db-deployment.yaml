@@ -64,7 +64,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: db-config
-                  key:  DB_USERNAME
+                  key:  DB_PASSWORD
 
             - name: MYSQL_DATABASE
               #value:
