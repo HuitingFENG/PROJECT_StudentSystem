@@ -20,9 +20,6 @@ jobs:
       - name: Start Kubernetes minikube
         uses: medyagh/setup-minikube@master
 
-      - name: Check pods, deployments, services status
-        run: kubectl get pods,deployments,svc
-
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
@@ -39,6 +36,9 @@ jobs:
       - name: Deploy the image to minikube
         run:
           kubectl apply -f app-configMap.yaml -f app-deployment.yaml -f db-configMap.yaml -f db-deployment.yaml
+
+      - name: Check pods, deployments, services status
+        run: kubectl get pods,deployments,svc
 
       - name: Get Kubernetes appbackend-service URL
         run: |
