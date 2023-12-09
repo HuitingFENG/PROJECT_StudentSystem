@@ -191,26 +191,8 @@ Update the part of test under the AppBackEnd/src/test/resources/application.prop
 Check an existing workflow
     
     https://github.com/HuitingFENG/PROJECT_StudentSystem/actions
-Create a new branch 
-
-    git branch testbranch
-Move to the new branch:
-
-    git checkout testbranch
-Update the code and commit changes
-
-    git commit -a -m "add a testbranch"
-Push the changes to GitHub
-
-    git push -u origin testbranch
-Create a Pull request on GitHub and follow the workflow
-Verify the result on the GitHub Actions web page
-![](Images/GitHubActionsTest.png)
-Delete the branch
-
-    git checkout main
-    git branch -D testbranch
-    git push origin --delete testbranch
+Add some jobs on the actions.yaml file and git commit push about mysql database connection
+![]()
 
 
 
