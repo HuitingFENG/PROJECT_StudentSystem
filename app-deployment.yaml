@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: appbackend-container
-          image: huitingfeng/appbackend:8.0
+          image: huitingfeng/appbackend:9.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
         - name: appfrontend-container
-          image: huitingfeng/appfrontend:16.0
+          image: huitingfeng/appfrontend:17.0
           imagePullPolicy: Always
           #envFrom:
             #- configMapRef:

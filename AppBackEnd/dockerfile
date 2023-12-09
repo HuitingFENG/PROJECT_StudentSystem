@@ -11,7 +11,8 @@ WORKDIR /app
 COPY pom.xml .
 COPY src /app/src
 # Build the application
-RUN mvn clean package -DskipTests
+# RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 # Stage 2: Create the final Docker image
 FROM openjdk:11-oracle

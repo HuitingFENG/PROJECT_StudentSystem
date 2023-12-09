@@ -19,10 +19,11 @@
 - Docker Desktop
 - MySQLWorkbench
 - GitHub Actions
+- DigitalOcean Kubernetes
 
 
 ## 3. Steps
-Open the docker desktop and go to the project and start the minikube via terminal
+Open the docker daemon (docker desktop) and go to the project and start the minikube via terminal
     
     minikube start
 Check the status if wanted
@@ -67,12 +68,12 @@ Go to the directory AppBackEnd and create a dockerfile
     touch dockerfile
 Copy the provided dockerfile and save it and then create a Docker image (open the docker desktop if necessary)
 
-    docker build -t appbackend:1.0 .
+    docker build --no-cache -t appbackend:$TAG .
 Publish the Docker image to the Docker Hub (login if necessary)
 
     docker images
-    docker tag $appbackend1.0ImageID $dockerHubID/appbackend:1.0
-    docker push $dockerHubID/appbackend:1.0
+    docker tag $appbackendImageID $dockerHubID/appbackend:$TAG
+    docker push $dockerHubID/appbackend:$TAG
 
 Return to the root of project and create a .yaml files with the provided codes (appbackend-deployment, appbackend-service)
     
@@ -121,12 +122,12 @@ Create a dockerfile in this directory AppFrontEnd
 Copy the corresponding content
 Create a docker image
     
-    docker build -t appfrontend:12.0 .
+    docker build --no-cache -t appfrontend:$TAG .
 Push the docker image into docker hub (login if necessary)
 
     docker images
-    docker tag $appfrontend12.0ImageID $dockerID/appfrontend:12.0
-    docker push $dockerID/appfrontend:12.0
+    docker tag $appfrontendImageID $dockerID/appfrontend:$TAG
+    docker push $dockerID/appfrontend:$TAG
 Return to the root of project and create a .yaml files with the provided codes 
 
     cd ..
@@ -167,7 +168,11 @@ Enable a tunnel for Minikube
     minikube addons enable ingress-dns
     minikube tunnel
 Check in the Web browser
-![](Images/BrowserIngressFrontend.png)
+![](Images/BrowserIngressBackend.png)
+![](Images/BrowserIngressFrontendGetAll.png)
+![](Images/BrowserIngressFrontendAdd.png)
+![](Images/BrowserLocalGatewayFrontend.png)
+![](Images/BrowserLocalGatewayBackend.png)
 
 
 ### 3.5. Continuous Integration with GitHub Actions
@@ -180,7 +185,34 @@ Check in the Web browser
 ![](Images/GitHubActions.png)
 
 #### 3.5.2. Build and tests
+Update the part of test under the AppBackEnd/src/test/resources/application.properties
+
 #### 3.5.3. Launch a workflow when the code is updated
+Check an existing workflow
+    
+    https://github.com/HuitingFENG/PROJECT_StudentSystem/actions
+Create a new branch 
+
+    git branch testbranch
+Move to the new branch:
+
+    git checkout testbranch
+Update the code and commit changes
+
+    git commit -a -m "add a testbranch"
+Push the changes to GitHub
+
+    git push -u origin testbranch
+Create a Pull request on GitHub and follow the workflow
+Verify the result on the GitHub Actions web page
+![](Images/GitHubActionsTest.png)
+Delete the branch
+
+    git checkout main
+    git branch -D testbranch
+    git push origin --delete testbranch
+
+
 
 ### 3.6. Deploy in a cloud infrastructure (DigitalOcean Kubernetes)
 

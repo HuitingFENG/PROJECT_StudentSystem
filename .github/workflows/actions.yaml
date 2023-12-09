@@ -28,8 +28,13 @@ jobs:
           export SHELL=/bin/bash
           eval $(minikube -p minikube docker-env)
           cd AppBackEnd
-          docker build -t huitingfeng/appbackend:8.0 .
-          docker push huitingfeng/appbackend:8.0
+          docker build --no-cache -t huitingfeng/appbackend:9.0 .
+          docker push huitingfeng/appbackend:9.0
+          docker images
+          cd ..
+          cd AppFrontEnd
+          docker build --no-cache -t huitingfeng/appfrontend:17.0 .
+          docker push huitingfeng/appfrontend:17.0
           docker images
           cd ..
 
