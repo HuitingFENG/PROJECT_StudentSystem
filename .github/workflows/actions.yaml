@@ -1,28 +1,45 @@
-name: CI
+name: Deploy a website of student system
+
 on:
   pull_request:
   push:
     branches:
       - main
+
 jobs:
-  job1:
+  deploy-mysql:
     runs-on: ubuntu-latest
-    name: build and deploy to minikube
+    name: deploy-mysql
     steps:
       - uses: actions/checkout@v3
+      - name: Start Kubernetes minikube
+        uses: medyagh/setup-minikube@master
+      #- name: Login to Docker Hub
+        #run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+      - name: Deploy the image to minikube
+        run:
+          kubectl apply -f db-configMap.yaml -f db-deployment.yaml
+      - name: Wait for container initialization
+        run: sleep 60
+      - name: Check pods, deployments, services status
+        run: kubectl get pods,deployments,svc
 
+
+  deploy-backend-frontend:
+    needs: deploy-mysql
+    runs-on: ubuntu-latest
+    name: deploy-backend-frontend
+    steps:
+      - uses: actions/checkout@v3
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
           java-version: '11'
           distribution: 'adopt'
-
       - name: Start Kubernetes minikube
         uses: medyagh/setup-minikube@master
-
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-
       - name: Build test and build docker image
         run: |
           export SHELL=/bin/bash
@@ -31,23 +48,19 @@ jobs:
           docker build --no-cache -t huitingfeng/appbackend:9.0 .
           docker push huitingfeng/appbackend:9.0
           docker images
-          cd ..
+          cd ..  
           cd AppFrontEnd
           docker build --no-cache -t huitingfeng/appfrontend:17.0 .
           docker push huitingfeng/appfrontend:17.0
           docker images
           cd ..
-
       - name: Deploy the image to minikube
         run:
           kubectl apply -f db-configMap.yaml -f db-deployment.yaml -f app-configMap.yaml -f app-deployment.yaml
-
       - name: Wait for container initialization
-        run: sleep 120
-
+        run: sleep 60
       - name: Check pods, deployments, services status
         run: kubectl get pods,deployments,svc
-
       - name: Get Kubernetes appbackend-service URL
         run: |
           kubectl get pods
@@ -63,10 +76,13 @@ jobs:
           minikube service list
           minikube service appbackend-service --url
           echo "------------------opening the service------------------"
-
       - name: Test Kubernetes appbackend-service URL
         uses: nick-fields/retry@v2
         with:
           timeout_seconds: 10
           max_attempts: 4
           command: curl $(minikube service appbackend-service --url)/student/getAll
+
+
+
+
