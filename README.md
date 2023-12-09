@@ -34,7 +34,7 @@ Open the dashboard if wanted
     minikube dashboard
 
 ### 3.1. Start with a single local service (appbackend-service)
-Git clone a backend repository (java sprint boot) 
+Git clone a backend repository (java spring boot) 
 
     git clone https://github.com/youtube-arjun-codes/FullStackApp.git
 Copy this directory into another new directory to make changes and to git push to our own github repository
