@@ -170,13 +170,15 @@ Check in the Web browser
 ![](Images/BrowserIngressFrontend.png)
 
 
-### 3.5. Deploy in a cloud infrastructure (GitHub Actions)
+### 3.5. CI with GitHub Actions
 #### 3.5.1. The CI workflow
 #### 3.5.2. Build and tests
 #### 3.5.3. Launch a workflow when the code is updated
 
+### 3.6. Deploy in a cloud infrastructure
 
-### 3.6. Delete all
+
+### 3.7. Delete all
 Delete all and stop minikube
 
     kubectl delete service appfrontend-service
