@@ -192,7 +192,9 @@ Check an existing workflow
     
     https://github.com/HuitingFENG/PROJECT_StudentSystem/actions
 Add some jobs on the actions.yaml file and git commit push about mysql database connection
-![]()
+![](Images/GitHubActions1.png)
+![](Images/GitHubActions2.png)
+![](Images/GitHubActionsTest.png)
 
 
 
