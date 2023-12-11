@@ -3,6 +3,24 @@
 ## 1. Description
 - Course name: Software Engineering for the Cloud
 - Students M2 SE1: FOUR & FENG
+- Manual: 
+    - open docker desktop
+    - locate on this project on intellij
+    - tape command line in terminal: minikube start
+    - wait and tape command line in terminal: minikube addons enable ingress
+    - wait and tape command line in terminal: minikube tunnel (input password if required)
+    - wait and tape command line in terminal: kubectl apply -f db-configMap.yaml -f db-deployment.yaml -f app-configMap.yaml -f app-deployment.yaml
+    - wait and tape command line in terminal: kubectl get pods,deployments,svc
+    - update the /etc/hosts file (depending on operating system) in local machine
+    - wait and tape command line in terminal: curl http://studentsystem/
+    - verify if the result is similar to a web page
+    - wait and tape command line in terminal: curl http://studentsystem/student/getAll
+    - verify if the result is similar to a list of students
+    - check in the web browser by taping this command line in terminal: minikube service appfrontend-service
+    - check the list of students in the web browser and add a new student in the form
+    - refresh the current web page and check again the list of students in the web browser
+    - reopen a new web browser and tape this url: http://studentsystem/student/getAll
+    - verify if the result returns a list of student on the database
 
 
 ## 2. Prerequisite
