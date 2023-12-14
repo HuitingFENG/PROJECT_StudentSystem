@@ -234,7 +234,7 @@ Delete all and stop minikube
 
 ## 4. Google Labs
 ### 4.1. FOUR
-
+![](Images/GoogleLabCamilleFOUR.png)
 ### 4.2. FENG
 ![](Images/GoogleLabs_HuitingFENG.png)
 
